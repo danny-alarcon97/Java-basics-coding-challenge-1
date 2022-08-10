@@ -1,4 +1,4 @@
-2.1 (select)
+-- 2.1 (select)
 
 -- Select all records from the Employee table.
 select * from employee;
@@ -9,7 +9,7 @@ select * from employee where last_name = 'King';
 -- Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
 select * from employee where reports_to is null and first_name = 'Andrew';
 
-2.2 (order by)
+-- 2.2 (order by)
 
 select * from album;
 
@@ -19,7 +19,7 @@ select * from album order by title desc;
 -- Select first name from Customer and sort result set in ascending order by city.
 select first_name from customer order by city;
 
-2.3 (insert into)
+-- 2.3 (insert into)
 
 select * from genre;
 
@@ -46,7 +46,7 @@ values ('Francisco', 'Guerrero', 'Microsoft', '14 Thor Lane', 'franfran@yahoo.co
 insert into customer(first_name, last_name, company, address, email)
 values ('George', 'Thompson', 'TikTok', '65 Toper Drive', 'Christian_mingle@gmail.com');
 
-2.4 (Update)
+-- 2.4 (Update)
 
 -- Update Aaron Mitchell in Customer table to Robert Walter
 select * from customer where first_name = 'Aaron';
@@ -55,7 +55,7 @@ update customer
 set first_name = 'Robert', last_name = 'Walter'
 where customer_id = 32;
 
-2.5 (Like)
+-- 2.5 (Like)
 
 -- Select all invoices with a billing address like “T%”
 select * from invoice;
@@ -63,7 +63,7 @@ select * from invoice;
 select * from invoice
 where billing_address like 'T%';
 
-2.6 (Between)
+-- 2.6 (Between)
 
 -- Select all invoices that have a total between 15 and 50
 select * from invoice
@@ -73,7 +73,82 @@ where total between 15 and 50;
 select * from employee
 where hire_date between '2003-06-01 00:00:00.000' and '2004-03-01 00:00:00.000';
 
-2.7 (Delete)
+-- 2.7 (Delete)
 
 -- Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them)
 delete from customer where first_name = 'Robert' and last_name = 'Walter';
+
+-- 3.0 (sql Functions)
+
+-- 3.1 System Defined Functions
+
+-- Create a function that returns the current time.
+select current_timestamp;
+
+-- Create a function that returns the length of a mediatype from the mediatype table
+select * from media_type;
+
+select name,length(name)
+as "Length of a mediatype"
+from media_type
+where length(name)>1;
+
+-- 3.2 System Defined Aggregate Functions
+
+-- Create a function that returns the average total of all invoices
+select * from invoice;
+
+select avg(total) from invoice;
+
+-- Create a function that returns the most expensive track
+select * from track;
+
+select max(unit_price) from track;
+
+-- 3.3 User Defomed Scalar Functions
+
+-- Create a function that returns the average price of invoiceline items in the invoiceline table
+select avg(unit_price) from invoice_line; 
+
+-- 3.4 User Defined Table Valued Functions
+
+-- Create a function that returns all employees who are born after 1968
+select * from employee;
+
+???
+
+--- 5.0 Transactions
+
+-- Create a transaction that given a invoiceId will delete that invoice 
+-- (There may be constraints that rely on this, find out how to resolve them)
+???
+
+-- Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+
+-- 6.0 Triggers
+
+-- 6.1 AFTER/FOR
+
+-- Create an after insert trigger on the employee table fired after a new record is inserted into the table. 
+
+-- 7.0 JOINS
+
+-- 7.1 INNER
+
+-- Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+
+-- 7.2 OUTER
+
+-- Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+
+-- 7.3 RIGHT
+
+-- Create a right join that joins album and artist specifying artist name and title.
+
+-- 7.4 CROSS
+
+-- Create a cross join that joins album and artist and sorts by artist name in ascending order.
+
+-- 7.5 SELF
+
+-- Perform a self-join on the employee table, joining on the reportsto column.
