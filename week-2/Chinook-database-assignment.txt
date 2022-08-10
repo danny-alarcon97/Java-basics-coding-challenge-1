@@ -1,0 +1,79 @@
+2.1 (select)
+
+-- Select all records from the Employee table.
+select * from employee;
+
+-- Select all records from the Employee table where last name is King
+select * from employee where last_name = 'King';
+
+-- Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+select * from employee where reports_to is null and first_name = 'Andrew';
+
+2.2 (order by)
+
+select * from album;
+
+-- Select all albums in Album table and sort result set in descending order by title.
+select * from album order by title desc;
+
+-- Select first name from Customer and sort result set in ascending order by city.
+select first_name from customer order by city;
+
+2.3 (insert into)
+
+select * from genre;
+
+-- Insert two new records into Genre table
+insert into genre(name) values ('Bachata');
+
+insert into genre(name) values ('Salsa'); 
+
+-- Insert two new records into Employee table
+select * from employee;
+
+insert into employee(last_name, first_name, title, reports_to, birth_date)
+values ('Alarcon', 'Daniel', 'IT Staff', 1, '1997-09-09');
+
+insert into employee(last_name, first_name, title, reports_to, birth_date)
+values ('Alarcon', 'Alfredo', 'IT Staff', 1, '1960-06-30');
+
+-- Insert two new records into Customer table
+select * from customer;
+
+insert into customer(first_name, last_name, company, address, email)
+values ('Francisco', 'Guerrero', 'Microsoft', '14 Thor Lane', 'franfran@yahoo.com');
+
+insert into customer(first_name, last_name, company, address, email)
+values ('George', 'Thompson', 'TikTok', '65 Toper Drive', 'Christian_mingle@gmail.com');
+
+2.4 (Update)
+
+-- Update Aaron Mitchell in Customer table to Robert Walter
+select * from customer where first_name = 'Aaron';
+
+update customer 
+set first_name = 'Robert', last_name = 'Walter'
+where customer_id = 32;
+
+2.5 (Like)
+
+-- Select all invoices with a billing address like “T%”
+select * from invoice;
+
+select * from invoice
+where billing_address like 'T%';
+
+2.6 (Between)
+
+-- Select all invoices that have a total between 15 and 50
+select * from invoice
+where total between 15 and 50;
+
+-- Select all employees hired between 1st of June 2003 and 1st of March 2004
+select * from employee
+where hire_date between '2003-06-01 00:00:00.000' and '2004-03-01 00:00:00.000';
+
+2.7 (Delete)
+
+-- Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them)
+delete from customer where first_name = 'Robert' and last_name = 'Walter';
